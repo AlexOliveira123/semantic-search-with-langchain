@@ -126,13 +126,12 @@ Configurados em `src/config.py`:
 
 ### Regras Anti-Alucinação do Prompt
 
-A interface de chat impõe cinco regras rígidas ao LLM:
+A interface de chat impõe quatro regras obrigatórias ao LLM:
 
-1. Responder apenas com base no contexto recuperado.
-2. Retornar uma mensagem fixa de "informação insuficiente" quando o contexto não contiver a resposta.
-3. Nunca inventar fatos, datas, nomes ou números.
-4. Não utilizar conhecimento externo proveniente do treinamento.
-5. Citar o documento de origem e o número da página quando disponíveis.
+1. Responder somente com base no CONTEXTO fornecido.
+2. Se o CONTEXTO não contiver a informação necessária, retornar exatamente: _"Não tenho informações necessárias para responder sua pergunta."_
+3. Nunca inventar informações nem utilizar conhecimento externo ao CONTEXTO.
+4. Nunca produzir opiniões ou interpretações além do que está escrito no CONTEXTO.
 
 ---
 
@@ -256,10 +255,9 @@ Configured in `src/config.py`:
 
 ### Anti-Hallucination Prompt Rules
 
-The chat interface enforces five strict rules on the LLM:
+The chat interface enforces four mandatory rules on the LLM:
 
-1. Answer only from the retrieved context.
-2. Return a fixed "not enough information" message when context is absent.
-3. Never invent facts, dates, names, or figures.
-4. No external knowledge from training data.
-5. Cite the source document and page number when available.
+1. Answer only based on the provided CONTEXT.
+2. If the CONTEXT does not contain the necessary information, return exactly: _"Não tenho informações necessárias para responder sua pergunta."_
+3. Never invent information or use any knowledge external to the CONTEXT.
+4. Never produce opinions or interpretations beyond what is explicitly written in the CONTEXT.

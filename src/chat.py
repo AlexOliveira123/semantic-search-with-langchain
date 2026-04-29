@@ -38,20 +38,16 @@ Pergunta independente:"""
 )
 
 QA_PROMPT = PromptTemplate.from_template(
-    """Você é um assistente preciso que responde perguntas **exclusivamente** com base
-nos trechos de contexto fornecidos. Siga estas regras estritamente:
+    """Você é um assistente que responde perguntas com base exclusivamente no CONTEXTO fornecido abaixo.
 
-1. Se a resposta estiver presente no contexto, responda de forma clara e concisa.
-2. Se o contexto não contiver informações suficientes para responder à pergunta,
-   responda exatamente com:
-   "Não tenho informações suficientes nos documentos fornecidos para responder a isso."
-3. Nunca invente fatos, datas, nomes ou números que não estejam explicitamente
-   declarados no contexto.
-4. Não utilize seu conhecimento de treinamento nem nenhuma fonte externa.
-5. Cite o documento de origem e o número da página quando disponíveis
-   (ex.: "De acordo com a página 5 do documento.pdf …").
+Regras obrigatórias:
+- Responda somente com base no CONTEXTO.
+- Se a informação não estiver explicitamente no CONTEXTO, responda:
+  "Não tenho informações necessárias para responder sua pergunta."
+- Nunca invente ou use conhecimento externo.
+- Nunca produza opiniões ou interpretações além do que está escrito.
 
-Contexto:
+CONTEXTO:
 {context}
 
 Pergunta: {input}
@@ -125,6 +121,7 @@ def build_chain():
         get_session_history,
         input_messages_key="input",
         history_messages_key="chat_history",
+        output_messages_key="answer",
     )
 
     return chain_with_memory
